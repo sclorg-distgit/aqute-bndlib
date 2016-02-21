@@ -5,7 +5,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.50.0
-Release:        8.9%{?dist}
+Release:        8.10%{?dist}
 Summary:        BND Library
 License:        ASL 2.0
 URL:            http://www.aQute.biz/Code/Bnd
@@ -39,7 +39,7 @@ API documentation for %{pkg_name}.
 
 %prep
 %setup -q -c -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 # fixing incomplete source directory structure
@@ -67,14 +67,14 @@ sed -i "s|\r||g" LICENSE
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 export LC_ALL=en_US.UTF-8
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -86,6 +86,9 @@ set -e -x
 %doc LICENSE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.50.0-8.10
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.50.0-8.9
 - maven33 rebuild
 
