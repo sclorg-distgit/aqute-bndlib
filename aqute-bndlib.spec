@@ -5,7 +5,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.50.0
-Release:        8.10%{?dist}
+Release:        8.11%{?dist}
 Summary:        BND Library
 License:        ASL 2.0
 URL:            http://www.aQute.biz/Code/Bnd
@@ -16,7 +16,7 @@ Source1:        http://repo1.maven.org/maven2/biz/aQute/bndlib/1.50.0/bndlib-1.5
 BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 
 %description
 The bnd tool helps you create and diagnose OSGi R4 bundles.
@@ -86,6 +86,9 @@ set -e -x
 %doc LICENSE
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.50.0-8.11
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.50.0-8.10
 - maven33 rebuild #2
 
