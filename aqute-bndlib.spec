@@ -5,13 +5,16 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.50.0
-Release:        8.11%{?dist}
+Release:        8.12%{?dist}
 Summary:        BND Library
 License:        ASL 2.0
 URL:            http://www.aQute.biz/Code/Bnd
 
 Source0:        http://repo1.maven.org/maven2/biz/aQute/bndlib/1.50.0/bndlib-1.50.0.jar
 Source1:        http://repo1.maven.org/maven2/biz/aQute/bndlib/1.50.0/bndlib-1.50.0.pom
+
+# Fixes compatibility with Java 8
+Patch0:         0001-Port-to-Java-8.patch
 
 BuildArch:      noarch
 
@@ -45,6 +48,8 @@ set -e -x
 # fixing incomplete source directory structure
 mkdir -p src/main/java target/classes
 mv -f OSGI-OPT/src/* src/main/java/
+
+%patch0 -p1
 
 # removing bundled classess & junk
 rm -rf OSGI-OPT
@@ -86,6 +91,9 @@ set -e -x
 %doc LICENSE
 
 %changelog
+* Wed Dec 14 2016 Michael Simacek <msimacek@redhat.com> - 1.50.0-8.12
+- Fix Java 8 compatibility
+
 * Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.50.0-8.11
 - Fix BR on maven-local & co.
 
